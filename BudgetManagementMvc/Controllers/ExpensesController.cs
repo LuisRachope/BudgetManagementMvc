@@ -29,6 +29,7 @@ namespace BudgetManagementMvc.Controllers
             var obj = await _expenseServices.FindByIdAsync(Id.Value);
 
             return View(obj);
+
         }
 
         /*
