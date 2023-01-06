@@ -53,11 +53,16 @@ namespace BudgetManagementMvc
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeedingService seedingService)
         {
             var enUS = new CultureInfo("en-Us");
+            var ptBR = new CultureInfo("pt-Br");
             var localizationOptions = new RequestLocalizationOptions
             {
-                DefaultRequestCulture = new RequestCulture(enUS),
-                SupportedCultures = new List<CultureInfo> { enUS },
-                SupportedUICultures = new List<CultureInfo> { enUS }
+                DefaultRequestCulture = new RequestCulture(ptBR),
+                SupportedCultures = new List<CultureInfo> { ptBR },
+                SupportedUICultures = new List<CultureInfo> { ptBR }
+
+                //DefaultRequestCulture = new RequestCulture(enUS),
+                //SupportedCultures = new List<CultureInfo> { enUS },
+                //SupportedUICultures = new List<CultureInfo> { enUS }
             };
 
             if (env.IsDevelopment())

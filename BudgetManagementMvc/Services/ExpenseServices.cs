@@ -1,5 +1,6 @@
 ﻿using BudgetManagementMvc.Data;
 using BudgetManagementMvc.Models;
+using BudgetManagementMvc.Models.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,25 @@ namespace BudgetManagementMvc.Services
             Expense expense = await _context.Expense.FirstOrDefaultAsync(x => x.Id == id);
 
             return expense;
+        }
+
+        public async Task CreateAsync(ExpenseFormViewModel obj)
+        {
+            await _context.AddAsync(obj.Expense);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateAsync(Expense obj)
+        {
+            _context.Update(obj);
+            await _context.SaveChangesAsync();
+        }
+
+
+        public async Task DeleteAsync(Expense obj)
+        {
+            _context.Remove(obj);
+            await _context.SaveChangesAsync();
         }
 
     }
