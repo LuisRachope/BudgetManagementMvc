@@ -23,6 +23,30 @@ namespace BudgetManagementMvc.Services
             return await _context.Expense.ToListAsync();
         }
 
+        public async Task<double> TotalAmount()
+        {
+            IEnumerable<Expense> list = await FindAllAsync();
+
+            double totalAmount = 0;
+            foreach (Expense obj in list)
+            {
+                totalAmount += obj.Amount;
+            }
+
+            return totalAmount;
+        }
+
+        public async Task<double> TotalAmountTeste(IEnumerable<Expense> list)
+        {
+            double totalAmount = 0;
+            foreach (Expense obj in list)
+            {
+                totalAmount += obj.Amount;
+            }
+
+            return totalAmount;
+        }
+
         public async Task<Expense> FindByIdAsync(int id)
         {
 
