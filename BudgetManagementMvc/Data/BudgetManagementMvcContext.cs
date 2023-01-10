@@ -16,6 +16,7 @@ namespace BudgetManagementMvc.Data
         }
 
         public DbSet<Expense> Expense { get; set; }
+        public DbSet<Category> Category { get; set; }
 
     }
 }

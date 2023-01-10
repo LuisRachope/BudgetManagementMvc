@@ -39,7 +39,7 @@ namespace BudgetManagementMvc
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddDbContext<BudgetManagementMvcContext>(options => 
+            services.AddDbContext<BudgetManagementMvcContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("BudgetManagementMvcContext"), builder =>
                     builder.MigrationsAssembly("BudgetManagementMvc")));
 
@@ -47,6 +47,7 @@ namespace BudgetManagementMvc
             //Services addition on project
             services.AddScoped<SeedingService>();
             services.AddScoped<ExpenseServices>();
+            services.AddScoped<CategoryServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

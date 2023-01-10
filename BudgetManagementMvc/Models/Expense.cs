@@ -10,7 +10,7 @@ namespace BudgetManagementMvc.Models
     {
         public int Id { get; set; }
         [Display(Name = "Type")]
-        public string Type { get; set; }
+        public Category Type { get; set; }
         public string Description { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:F2}")]
@@ -20,7 +20,7 @@ namespace BudgetManagementMvc.Models
         {
         }
 
-        public Expense(int id, string type, string description, double amount)
+        public Expense(int id, Category type, string description, double amount)
         {
             Id = id;
             Type = type;

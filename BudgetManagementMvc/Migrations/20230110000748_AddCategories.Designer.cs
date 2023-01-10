@@ -3,14 +3,16 @@ using System;
 using BudgetManagementMvc.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BudgetManagementMvc.Migrations
 {
     [DbContext(typeof(BudgetManagementMvcContext))]
-    partial class BudgetManagementMvcContextModelSnapshot : ModelSnapshot
+    [Migration("20230110000748_AddCategories")]
+    partial class AddCategories
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

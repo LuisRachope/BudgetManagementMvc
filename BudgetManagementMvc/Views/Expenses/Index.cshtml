@@ -29,7 +29,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Type)
+                    @Html.DisplayFor(modelItem => item.Type.Id)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
@@ -44,7 +44,6 @@
                 </td>
             </tr>
         }
-        <td></td>
     </tbody>
     <tfoot>
         <tr class="bg-primary">
