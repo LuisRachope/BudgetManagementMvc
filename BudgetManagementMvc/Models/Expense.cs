@@ -16,6 +16,8 @@ namespace BudgetManagementMvc.Models
         [DisplayFormat(DataFormatString = "{0:F2}")]
         public double Amount { get; set; }
 
+        public int CategoryId { get; set; }
+
         public Expense()
         {
         }

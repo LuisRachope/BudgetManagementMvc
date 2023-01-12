@@ -3,6 +3,7 @@ using BudgetManagementMvc.Models.ViewModels;
 using BudgetManagementMvc.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -13,17 +14,31 @@ namespace BudgetManagementMvc.Controllers
     public class ExpensesController : Controller
     {
         private readonly ExpenseServices _expenseServices;
+        private readonly CategoryServices _categoryServices;
 
-        public ExpensesController(ExpenseServices expenseServices)
+        public ExpensesController(ExpenseServices expenseServices, CategoryServices categoryServices)
         {
             _expenseServices = expenseServices;
+            _categoryServices = categoryServices;
         }
 
 
         public async Task<IActionResult> Index()
         {
-            var obj = await _expenseServices.FindAllAsync();
-            return View(obj);
+            var expenses = await _expenseServices.FindAllAsync();
+            var categories = await _categoryServices.FindAllAsync();
+
+            List<Expense> list = new List<Expense>();
+            foreach (var obj in expenses)
+            {
+                list.Add(new Expense(obj.Id,
+                    categories.FirstOrDefault(x => x.Id == obj.CategoryId),
+                    obj.Description,
+                    obj.Amount
+                    ));
+            }
+
+            return View(list);
         }
 
         public async Task<IActionResult> Details(int? Id)
@@ -53,7 +68,11 @@ namespace BudgetManagementMvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _expenseServices.CreateAsync(obj);
+                Category category = await _categoryServices.FindByIdAsync(1);
+                Expense exp = new Expense(obj.Expense.Id, category, obj.Expense.Description, obj.Expense.Amount);
+                ExpenseFormViewModel e = new ExpenseFormViewModel { Expense = exp };
+
+                await _expenseServices.CreateAsync(e);
             }
 
             return RedirectToAction(nameof(Index));
